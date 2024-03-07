@@ -5,7 +5,7 @@ composer update
 ```
 npm install
 ```
-Tambien se debera crear una base de datos para que se conecte mysql. En mi caso se llama la tabla db.
+Tambien se debera crear una base de datos para que se conecte mysql y configurar el .env.
 Despues de ello se inicia el server.
 
 ```
