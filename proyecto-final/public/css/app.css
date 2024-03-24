@@ -34,3 +34,15 @@
     font-weight: bold;
     color: #009879;
 }
+
+.navbar {
+    padding: 10px;
+    background-color: black;
+    text-align: right;
+}
+
+.navbar a {
+    padding: 10px;
+    text-decoration: none;
+    color: yellow;
+}

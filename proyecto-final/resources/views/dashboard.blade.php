@@ -1,56 +1,19 @@
 <x-app-layout>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+		    <link href="/css/app" rel="stylesheet">
 		<x-slot name="header">
 				<h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
 						{{ __('Dashboard') }}
 				</h2>
 		</x-slot>
-
-		<div class="row">
-				<div class="col-sm-12">
-						<h1 class="display-3">Libros</h1>    
-						<table class="table table-striped">
-								<thead>
-										<tr>
-										<td>Titulo</td>
-										<td>ISBN</td>
-										<td>Autor</td>
-										<td colspan = 2>Actions</td>
-										</tr>
-								</thead>
-										<div>
-												<a style="margin: 19px;" href="{{ route('libros.create')}}" class="btn btn-primary">New libro</a>
-										</div>
-								<tbody>
-										@foreach($libros as $libro)
-												<tr>
-														<td>{{$libro->id}}</td>
-														<td>{{$libro->titulo}}</td>
-														<td>{{$libro->ISBN}}</td>
-														<td>{{$libro->autor}}</td>
-														<td>
-																<a href="{{ route('libros.edit',$libro->id)}}" class="btn btn-primary">Edit</a>
-														</td>
-														<td>
-																<form action="{{ route('libros.destroy', $libro->id)}}" method="post">
-																@csrf
-																@method('DELETE')
-																<button class="btn btn-danger" type="submit">Delete</button>
-																</form>
-														</td>
-												</tr>
-										@endforeach
-								</tbody>
-						</table>
-				<div>
-
-				<div class="col-sm-12">
-						@if(session()->get('success'))
-								<div class="alert alert-success">
-										{{ session()->get('success') }}  
-								</div>
-						@endif
+			<a>
+				<div class="navbar">
+					<a href="/libros">Listar Libros</a>
+					<a href="/libros/create">Nuevo Libro</a>
 				</div>
-
-		</div>
-
+			</a>
+		<div class="container">
+		@yield('main')
+  	</div>
+	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </x-app-layout>
