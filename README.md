@@ -1,15 +1,17 @@
-Despues de un git clone se necesitan los siguentes comandos:
+Despues de un git clone se debera crear una base de datos para que se conecte mysql y configurar el .env. Despues se necesitan los siguentes comandos:
 ```
 composer update
 ```
 ```
+php artisan migrate
+```
+```
 npm install
 ```
-Tambien se debera crear una base de datos para que se conecte mysql y configurar el .env.
-Despues de ello se inicia el server.
+Ya se podra iniciar el server.
 
 ```
-php artisan migrate
+npm run dev
 ```
 ```
 php artisan serve
