@@ -3,7 +3,7 @@
 @section('main')
 
 <div class="container">
-		<h1 class="display-3">Libros</h1>
+		<h1 class="display-3"><font color="white">Libros</font></h1>
 		<a href="{{ route('libros.create')}}" class="btn btn-primary btn-new">Nuevo libro</a>
 		@if(session()->get('success'))
 			<div class="alert alert-success" role="alert">

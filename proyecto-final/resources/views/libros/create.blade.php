@@ -4,7 +4,7 @@
 
 <div class="row">
  <div class="col-sm-8 offset-sm-2">
-    <h1 class="display-3">Add a libro</h1>
+    <h1 class="display-3"><font color="white">Add a libro</font></h1>
   <div>
     @if ($errors->any())
       <div class="alert alert-danger">
@@ -18,20 +18,20 @@
       <form method="post" action="{{ route('libros.store') }}">
           @csrf
           <div class="form-group">    
-              <label for="titulo">Titulo:</label>
+              <label for="titulo"><font color="white">Titulo:</font></label>
               <input type="text" class="form-control" name="titulo"/>
           </div>
 
           <div class="form-group">
-              <label for="ISBN">ISBN:</label>
+              <label for="ISBN"><font color="white">ISBN:</font></label>
               <input type="text" class="form-control" name="ISBN"/>
           </div>
 
           <div class="form-group">
-              <label for="autor">Autor:</label>
+              <label for="autor"><font color="white">Autor:</font></label>
               <input type="text" class="form-control" name="autor"/>
           </div>                     
-          <button type="submit" class="btn btn-primary-outline">Add Libro</button>
+          <button type="submit" class="btn btn-primary">Add Libro</button>
       </form>
   </div>
 </div>
