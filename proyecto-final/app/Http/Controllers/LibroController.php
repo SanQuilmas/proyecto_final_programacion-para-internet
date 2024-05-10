@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Libro;
+use App\Models\Autor;
+use App\Models\autor_libros;
 
 use Illuminate\Http\Request;
 
@@ -12,9 +14,10 @@ class LibroController extends Controller
      */
     public function index()
     {
+        $autors = Autor::with('libros')->get();
         $libros = Libro::all();
 
-        return view('libros.index', compact('libros'));
+        return view('libros.index', compact('libros'), compact('autors'));
     }
 
     /**
@@ -22,7 +25,8 @@ class LibroController extends Controller
      */
     public function create()
     {
-        return view('libros.create');
+        $autors = Autor::all();
+        return view('libros.create', compact('autors'));
     }
 
     /**
@@ -33,41 +37,38 @@ class LibroController extends Controller
         $request->validate([
             'titulo'=>'required',
             'ISBN'=>'required',
+            'autor'=>'required',
         ]);
 
-        $libro = new Libro([
-            'titulo' => $request->get('titulo'),
-            'ISBN' => $request->get('ISBN'),
-        ]);
+        $libro = new Libro;
+        $libro->titulo = $request->get('titulo');
+        $libro->ISBN = $request->get('ISBN');
         $libro->save();
 
-        
+        $autors = $request->get('autor');
 
+        foreach($autors as $autor)
+            $libro->autors()->attach($autor);
+        
         return redirect('/libros')->with('success', 'Libro saved!');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
+        $autors = Autor::all();
         $libro = Libro::find($id);
-        return view('libros.edit', compact('libro')); 
+        return view('libros.edit', compact('libro'), compact('autors')); 
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
+        $flag = True;
         $request->validate([
             'titulo'=>'required',
             'ISBN'=>'required',
@@ -77,6 +78,29 @@ class LibroController extends Controller
         $libro->titulo =  $request->get('titulo');
         $libro->ISBN = $request->get('ISBN');
         $libro->save();
+        
+        $autors = $request->get('add-autor');
+        $autors_del = $request->get('remove-autor');
+        $autor_libros = autor_libros::all();
+        
+        if($autors != null){
+            foreach($autors as $autor)
+                foreach($autor_libros as $autor_libro)
+                    if ($autor == $autor_libro->autor_id && Libro::find($id)->id == $autor_libro->libro_id){ 
+                        $flag = False;
+                    }
+                if($flag){
+                    $libro->autors()->attach($autor);
+                }
+        }
+        
+        if($autors_del != null){
+            foreach($autors_del as $autor)
+                foreach($autor_libros as $autor_libro)
+                    if ($autor == $autor_libro->autor_id && Libro::find($id)->id == $autor_libro->libro_id){ 
+                        $libro->autors()->detach($autor);
+                    }
+        }
 
         return redirect('/libros')->with('success', 'Libro updated!');
     }
@@ -87,6 +111,7 @@ class LibroController extends Controller
     public function destroy(string $id)
     {
         $libro = Libro::find($id);
+        $libro->autors()->detach();
         $libro->delete();
 
         return redirect('/libros')->with('success', 'Libro deleted!');

@@ -34,10 +34,10 @@ class AutorController extends Controller
             'nombre'=>'required',
         ]);
 
-        $autor = new Autor([
-            'nombre' => $request->get('nombre'),
-        ]);
+        $autor = new Autor;
+        $autor->nombre = $request->get('nombre');
         $autor->save();
+        
         return redirect('/autors')->with('success', 'Autor saved!');
     }
 

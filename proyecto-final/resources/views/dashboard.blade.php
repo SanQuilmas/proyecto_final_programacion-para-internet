@@ -6,14 +6,14 @@
 					{{ __('Dashboard') }}
 				</h2>
 		</x-slot>
-			<a>
-				<div class="navbar">
-					<a href="/libros">Listar Libros</a>
-					<a href="/libros/create">Nuevo Libro</a>
-					<a href="/autors">Listar Autors</a>
-					<a href="/autors/create">Nuevo Autor</a>
-				</div>
-			</a>
+			<nav class="navbar navbar-dark bg-dark">
+			<form class="container-fluid justify-content-start">
+				<a class="btn btn-dark" href="/libros">Listar Libros</a>
+				<a class="btn btn-dark" href="/libros/create">Nuevo Libro</a>
+				<a class="btn btn-dark" href="/autors">Listar Autors</a>
+				<a class="btn btn-dark" href="/autors/create">Nuevo Autor</a>
+			</nav>
+
 		<div class="container">
 		@yield('main')
   	</div>

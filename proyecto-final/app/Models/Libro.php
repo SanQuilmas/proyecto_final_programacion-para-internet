@@ -13,8 +13,8 @@ class Libro extends Model
         'titulo',
         'ISBN',  
     ];
-    public function autor(): BelongsToMany
+    public function autors(): BelongsToMany
     {
-        return $this->belongsToMany(Autor::class, 'autor_libros');
+        return $this->belongsToMany(Autor::class, 'autor_libros')->withTimestamps();;
     }
 }

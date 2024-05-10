@@ -10,12 +10,13 @@
 				{{ session()->get('success') }}
 			</div>
 		@endif
-		<table class="table table-striped">
+		<table class="table table-dark table-striped">
 			<thead>
 				<tr>
 					<th scope="col">ID</th>
 					<th scope="col">Título</th>
 					<th scope="col">ISBN</th>
+					<th scope="col">Autor</th>
 					<th scope="col" colspan="2">Acciones</th>
 				</tr>
 			</thead>
@@ -24,7 +25,14 @@
 					<tr>
 						<td>{{ $libro->id }}</td>
 						<td>{{ $libro->titulo }}</td>
-						<td>{{ $libro->ISBN }}</td>
+						<td>{{ $libro->ISBN }}</td>    
+						<td>
+						@foreach($libro->autors as $autor)
+							{{ $autor->nombre }}
+							<br>
+						@endforeach
+						</td>
+				@endforeach
 						<td>
 							<a href="{{ route('libros.edit', $libro->id) }}" class="btn btn-primary">Editar</a>
 						</td>
@@ -36,7 +44,6 @@
 							</form>
 						</td>
 					</tr>
-				@endforeach
 			</tbody>
 		</table>
 	</div>

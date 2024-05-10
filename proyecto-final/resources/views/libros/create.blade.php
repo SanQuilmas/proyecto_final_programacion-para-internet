@@ -23,6 +23,19 @@
           </div>
 
           <div class="form-group">
+                <label for="autor"><font color="white">Autor:</font></label>
+
+                <ul class="list-group" name="autor[]">
+                @foreach($autors as $autor)
+                    <li class="list-group-item">
+                        <input class="form-check-input me-1" name ="autor[]" type="checkbox" value="{{ $autor->id }}">
+                        {{ $autor->nombre }}
+                    </li>
+                @endforeach
+                </ul>
+            </div>
+
+          <div class="form-group">
               <label for="ISBN"><font color="white">ISBN:</font></label>
               <input type="text" class="form-control" name="ISBN"/>
           </div>
