@@ -15,6 +15,7 @@
 				<tr>
 					<th scope="col">ID</th>
 					<th scope="col">Nombre</th>
+					<th scope="col">Libros</th>
 					<th scope="col" colspan="2">Acciones</th>
 				</tr>
 			</thead>
@@ -23,6 +24,12 @@
 					<tr>
 						<td>{{ $autor->id }}</td>
 						<td>{{ $autor->nombre }}</td>
+						<td>
+						@foreach ($autor->libros as $libro)
+							{{ $libro->titulo }}
+							<br>
+						@endforeach
+						</td>
 						<td>
 							<a href="{{ route('autors.edit', $autor->id) }}" class="btn btn-primary">Editar</a>
 						</td>

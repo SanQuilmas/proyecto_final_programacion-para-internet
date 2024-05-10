@@ -23,6 +23,32 @@
                 <input type="text" class="form-control" name="nombre" value={{ $autor->nombre }} />
             </div>
 
+            <div class="form-group">
+                <label for="autor"><font color="white">Agregar Libro:</font></label>
+
+                <ul class="list-group" name="add-libro[]">
+                @foreach($libros as $libro)
+                    <li class="list-group-item">
+                        <input class="form-check-input me-1" name ="add-libro[]" type="checkbox" value="{{ $libro->id }}">
+                        {{ $libro->titulo }}
+                    </li>
+                @endforeach
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <label for="autor"><font color="white">Eliminar Libro:</font></label>
+
+                <ul class="list-group" name="remove-libro[]">
+                @foreach($autor->libros as $libro)
+                    <li class="list-group-item">
+                        <input class="form-check-input me-1" name ="remove-libro[]" type="checkbox" value="{{ $libro->id }}">
+                        {{ $libro->titulo }}
+                    </li>
+                @endforeach
+                </ul>
+            </div>
+
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Autor;
+use App\Models\Libro;
+use App\Models\autor_libros;
 use Illuminate\Http\Request;
 
 class AutorController extends Controller
@@ -11,7 +13,6 @@ class AutorController extends Controller
      */
     public function index()
     {
-        error_log('index');
         $autors = Autor::all();
 
         return view('autors.index', compact('autors'));
@@ -22,7 +23,6 @@ class AutorController extends Controller
      */
     public function create()
     {
-        error_log('create');
         return view('autors.create');
     }
 
@@ -31,7 +31,7 @@ class AutorController extends Controller
      */
     public function store(Request $request)
     {
-        error_log('store');
+        
         $request->validate([
             'nombre'=>'required',
         ]);
@@ -57,7 +57,8 @@ class AutorController extends Controller
     public function edit(string $id)
     {
         $autor = Autor::find($id);
-        return view('autors.edit', compact('autor')); 
+        $libros = Libro::all();
+        return view('autors.edit', compact('autor', 'libros')); 
     }
 
     /**
@@ -65,6 +66,7 @@ class AutorController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $flag = True;
         $request->validate([
             'nombre'=>'required',
         ]);
@@ -72,6 +74,29 @@ class AutorController extends Controller
         $autor = Autor::find($id);
         $autor->nombre =  $request->get('nombre');
         $autor->update();
+        
+        $libros = $request->get('add-libro');
+        $libros_del = $request->get('remove-libro');
+        $autor_libros = autor_libros::all();
+                
+        if($libros_del != null){
+            foreach($libros_del as $libro)
+                foreach($autor_libros as $autor_libro)
+                    if ($autor->id == $autor_libro->autor_id && $libro == $autor_libro->libro_id){ 
+                        $autor->libros()->detach($libro);
+                    }
+        }
+
+        if($libros != null){
+            foreach($libros as $libro)
+                foreach($autor_libros as $autor_libro)
+                    if ($autor->id == $autor_libro->autor_id && $libro == $autor_libro->libro_id){ 
+                        $flag = False;
+                    }
+                if($flag){
+                    $autor->libros()->attach($libro);
+                }
+        }
 
         return redirect('/autors')->with('success', 'Autor updated!');
     }
