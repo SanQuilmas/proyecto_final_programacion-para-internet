@@ -24,7 +24,7 @@
 					<tr>
 						<td>{{ $isbn->id }}</td>
 						<td>{{ $isbn->isbn }}</td>
-						<td>{{ $isbn->libro }}</td> 
+						<td>{{ $isbn->libro->titulo }}</td> 
 						<td>
 							<a href="{{ route('isbn.edit', $isbn->id) }}" class="btn btn-primary">Editar</a>
 						</td>

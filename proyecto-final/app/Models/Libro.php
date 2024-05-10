@@ -12,7 +12,6 @@ class Libro extends Model
     use HasFactory;
     protected $fillable = [
         'titulo',
-        'ISBN',  
     ];
     public function autors(): BelongsToMany
     {

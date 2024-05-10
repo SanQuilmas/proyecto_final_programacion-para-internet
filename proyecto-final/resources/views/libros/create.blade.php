@@ -35,10 +35,18 @@
                 </ul>
             </div>
 
-          <div class="form-group">
-              <label for="ISBN"><font color="white">ISBN:</font></label>
-              <input type="text" class="form-control" name="ISBN"/>
-          </div>
+            <div class="form-group">
+                <label for="autor"><font color="white">Agregar ISBN:</font></label>
+
+                <ul class="list-group" name="isbn[]">
+                @foreach($isbns as $isbn)
+                    <li class="list-group-item">
+                        <input class="form-check-input me-1" name ="isbn[]" type="checkbox" value="{{ $isbn->id }}">
+                        {{ $isbn->isbn }}
+                    </li>
+                @endforeach
+                </ul>
+            </div>
 
           <button type="submit" class="btn btn-primary">Add Libro</button>
       </form>

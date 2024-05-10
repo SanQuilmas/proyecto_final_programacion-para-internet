@@ -6,14 +6,15 @@
 				</h2>
 		</x-slot>
 			<nav class="navbar navbar-dark bg-dark">
+			<div class="container">
 				<a class="btn btn-dark" href="/libros">Listar Libros</a>
 				<a class="btn btn-dark" href="/libros/create">Nuevo Libro</a>
 				<a class="btn btn-dark" href="/autors">Listar Autors</a>
 				<a class="btn btn-dark" href="/autors/create">Nuevo Autor</a>
 				<a class="btn btn-dark" href="/isbn">Listar ISBN</a>
 				<a class="btn btn-dark" href="/isbn/create">Nuevo ISBN</a>
+			</div>
 			</nav>
-
 		<div class="container">
 		@yield('main')
   	</div>

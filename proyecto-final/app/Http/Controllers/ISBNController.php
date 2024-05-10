@@ -13,9 +13,10 @@ class ISBNController extends Controller
      */
     public function index()
     {
+        $libro = Libro::with('isbns')->get();
         $isbns = ISBN::all();
 
-        return view('isbns.index', compact('isbns'));
+        return view('isbns.index', compact('isbns'), compact('libro'));
     }
 
     /**
@@ -33,14 +34,18 @@ class ISBNController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre'=>'required',
+            'isbn'=>'required',
+            'libro'=>'required',
         ]);
 
         $isbn = new ISBN;
-        $isbn->nombre = $request->get('nombre');
+        $isbn->isbn = $request->get('isbn');
+        $libro = $request->get('libro');
+        $isbn->libro()->associate($libro);
         $isbn->save();
         
-        return redirect('/isbns')->with('success', 'ISBN saved!');
+
+        return redirect('/isbn')->with('success', 'ISBN saved!');
     }
 
     /**
@@ -56,8 +61,9 @@ class ISBNController extends Controller
      */
     public function edit(string $id)
     {
+        $libros = Libro::all();
         $isbn = ISBN::find($id);
-        return view('isbns.edit', compact('isbn')); 
+        return view('isbns.edit', compact('isbn'), compact('libros'));
     }
 
     /**
@@ -66,14 +72,17 @@ class ISBNController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'nombre'=>'required',
+            'isbn'=>'required',
+            'libro'=>'required',
         ]);
 
         $isbn = ISBN::find($id);
-        $isbn->nombre =  $request->get('nombre');
+        $isbn->isbn = $request->get('isbn');
+        $libro = $request->get('libro');
+        $isbn->libro()->associate($libro);
         $isbn->save();
 
-        return redirect('/isbns')->with('success', 'ISBN updated!');
+        return redirect('/isbn')->with('success', 'ISBN updated!');
     }
 
     /**
@@ -84,6 +93,6 @@ class ISBNController extends Controller
         $isbn = ISBN::find($id);
         $isbn->delete();
 
-        return redirect('/isbns')->with('success', 'ISBN deleted!');
+        return redirect('/isbn')->with('success', 'ISBN deleted!');
     }
 }

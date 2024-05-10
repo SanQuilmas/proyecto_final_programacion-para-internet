@@ -25,7 +25,14 @@
 					<tr>
 						<td>{{ $libro->id }}</td>
 						<td>{{ $libro->titulo }}</td>
-						<td>{{ $libro->ISBN }}</td>    
+						<td>
+						@if ($libro->isbns != null)
+							@foreach($libro->isbns as $isbn)
+								{{ $isbn->isbn }}
+								<br>
+							@endforeach
+						@endif
+						</td>    
 						<td>
 						@foreach($libro->autors as $autor)
 							{{ $autor->nombre }}
