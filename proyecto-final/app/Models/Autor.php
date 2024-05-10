@@ -12,7 +12,7 @@ class Autor extends Model
     protected $fillable = [
         'nombre',
     ];
-    public function libro(): BelongsToMany
+    public function libros(): BelongsToMany
     {
         return $this->belongsToMany(Libro::class, 'autor_libros');
     }

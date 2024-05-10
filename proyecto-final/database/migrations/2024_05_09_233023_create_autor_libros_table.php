@@ -9,17 +9,6 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('autor_libros', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->integer('autor_id');
-            $table->integer('libro_id');
-        });
-    }
-
-
     public function up()
     {
         Schema::create('autor_libros', function (Blueprint $table) {

@@ -10,6 +10,8 @@
 				<div class="navbar">
 					<a href="/libros">Listar Libros</a>
 					<a href="/libros/create">Nuevo Libro</a>
+					<a href="/autors">Listar Autors</a>
+					<a href="/autors/create">Nuevo Autor</a>
 				</div>
 			</a>
 		<div class="container">

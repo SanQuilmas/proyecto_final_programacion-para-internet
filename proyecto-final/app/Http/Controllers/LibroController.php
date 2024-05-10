@@ -33,15 +33,16 @@ class LibroController extends Controller
         $request->validate([
             'titulo'=>'required',
             'ISBN'=>'required',
-            'autor'=>'required'
         ]);
 
         $libro = new Libro([
             'titulo' => $request->get('titulo'),
             'ISBN' => $request->get('ISBN'),
-            'autor' => $request->get('autor')
         ]);
         $libro->save();
+
+        
+
         return redirect('/libros')->with('success', 'Libro saved!');
     }
 
@@ -58,7 +59,6 @@ class LibroController extends Controller
      */
     public function edit(string $id)
     {
-        
         $libro = Libro::find($id);
         return view('libros.edit', compact('libro')); 
     }
@@ -71,13 +71,11 @@ class LibroController extends Controller
         $request->validate([
             'titulo'=>'required',
             'ISBN'=>'required',
-            'autor'=>'required'
         ]);
 
         $libro = Libro::find($id);
         $libro->titulo =  $request->get('titulo');
         $libro->ISBN = $request->get('ISBN');
-        $libro->autor = $request->get('autor');
         $libro->save();
 
         return redirect('/libros')->with('success', 'Libro updated!');
