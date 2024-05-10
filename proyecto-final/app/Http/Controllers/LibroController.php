@@ -46,9 +46,10 @@ class LibroController extends Controller
 
         $autors = $request->get('autor');
 
-        foreach($autors as $autor)
-            $libro->autors()->attach($autor);
-        
+        if($autors != null){
+            foreach($autors as $autor)
+                $libro->autors()->attach($autor);
+        }
         return redirect('/libros')->with('success', 'Libro saved!');
     }
 

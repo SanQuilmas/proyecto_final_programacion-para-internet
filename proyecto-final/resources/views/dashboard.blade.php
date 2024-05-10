@@ -6,7 +6,6 @@
 				</h2>
 		</x-slot>
 			<nav class="navbar navbar-dark bg-dark">
-			<form class="container-fluid justify-content-start">
 				<a class="btn btn-dark" href="/libros">Listar Libros</a>
 				<a class="btn btn-dark" href="/libros/create">Nuevo Libro</a>
 				<a class="btn btn-dark" href="/autors">Listar Autors</a>
