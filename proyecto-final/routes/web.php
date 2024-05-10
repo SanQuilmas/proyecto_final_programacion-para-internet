@@ -3,6 +3,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\AutorController;
+use App\Http\Controllers\ISBNController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,5 +21,6 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('libros', LibroController::class);
 Route::resource('autors', AutorController::class);
+Route::resource('isbn', ISBNController::class);
 
 require __DIR__.'/auth.php';

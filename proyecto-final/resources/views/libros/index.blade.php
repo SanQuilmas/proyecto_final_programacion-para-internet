@@ -32,7 +32,6 @@
 							<br>
 						@endforeach
 						</td>
-				@endforeach
 						<td>
 							<a href="{{ route('libros.edit', $libro->id) }}" class="btn btn-primary">Editar</a>
 						</td>
@@ -44,6 +43,7 @@
 							</form>
 						</td>
 					</tr>
+				@endforeach
 			</tbody>
 		</table>
 	</div>

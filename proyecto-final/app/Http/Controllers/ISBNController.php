@@ -1,20 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Autor;
+use App\Models\ISBN;
+use App\Models\Libro;
+
 use Illuminate\Http\Request;
 
-class AutorController extends Controller
+class ISBNController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        error_log('index');
-        $autors = Autor::all();
+        $isbns = ISBN::all();
 
-        return view('autors.index', compact('autors'));
+        return view('isbns.index', compact('isbns'));
     }
 
     /**
@@ -22,8 +23,8 @@ class AutorController extends Controller
      */
     public function create()
     {
-        error_log('create');
-        return view('autors.create');
+        $libros = Libro::all();
+        return view('isbns.create', compact('libros'));
     }
 
     /**
@@ -31,16 +32,15 @@ class AutorController extends Controller
      */
     public function store(Request $request)
     {
-        error_log('store');
         $request->validate([
             'nombre'=>'required',
         ]);
 
-        $autor = new Autor;
-        $autor->nombre = $request->get('nombre');
+        $isbn = new ISBN;
+        $isbn->nombre = $request->get('nombre');
+        $isbn->save();
         
-        $autor->save();
-        return redirect('/autors')->with('success', 'Autor saved!');
+        return redirect('/isbns')->with('success', 'ISBN saved!');
     }
 
     /**
@@ -56,8 +56,8 @@ class AutorController extends Controller
      */
     public function edit(string $id)
     {
-        $autor = Autor::find($id);
-        return view('autors.edit', compact('autor')); 
+        $isbn = ISBN::find($id);
+        return view('isbns.edit', compact('isbn')); 
     }
 
     /**
@@ -69,11 +69,11 @@ class AutorController extends Controller
             'nombre'=>'required',
         ]);
 
-        $autor = Autor::find($id);
-        $autor->nombre =  $request->get('nombre');
-        $autor->update();
+        $isbn = ISBN::find($id);
+        $isbn->nombre =  $request->get('nombre');
+        $isbn->save();
 
-        return redirect('/autors')->with('success', 'Autor updated!');
+        return redirect('/isbns')->with('success', 'ISBN updated!');
     }
 
     /**
@@ -81,10 +81,9 @@ class AutorController extends Controller
      */
     public function destroy(string $id)
     {
-        $autor = Autor::find($id);
-        $autor->libros()->detach();
-        $autor->delete();
+        $isbn = ISBN::find($id);
+        $isbn->delete();
 
-        return redirect('/autors')->with('success', 'Autor deleted!');
+        return redirect('/isbns')->with('success', 'ISBN deleted!');
     }
 }

@@ -3,8 +3,8 @@
 @section('main')
 
 <div class="container">
-		<h1 class="display-3"><font color="white">Autors</font></h1>
-		<a href="{{ route('autors.create')}}" class="btn btn-primary btn-new">Nuevo autor</a>
+		<h1 class="display-3"><font color="white">Libros</font></h1>
+		<a href="{{ route('isbn.create')}}" class="btn btn-primary btn-new">Nuevo isbn</a>
 		@if(session()->get('success'))
 			<div class="alert alert-success" role="alert">
 				{{ session()->get('success') }}
@@ -14,20 +14,22 @@
 			<thead>
 				<tr>
 					<th scope="col">ID</th>
-					<th scope="col">Nombre</th>
+					<th scope="col">ISBN</th>
+					<th scope="col">Libro</th>
 					<th scope="col" colspan="2">Acciones</th>
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($autors as $autor)
+				@foreach($isbns as $isbn)
 					<tr>
-						<td>{{ $autor->id }}</td>
-						<td>{{ $autor->nombre }}</td>
+						<td>{{ $isbn->id }}</td>
+						<td>{{ $isbn->isbn }}</td>
+						<td>{{ $isbn->libro }}</td> 
 						<td>
-							<a href="{{ route('autors.edit', $autor->id) }}" class="btn btn-primary">Editar</a>
+							<a href="{{ route('isbn.edit', $isbn->id) }}" class="btn btn-primary">Editar</a>
 						</td>
 						<td>
-							<form action="{{ route('autors.destroy', $autor->id) }}" method="post">
+							<form action="{{ route('isbn.destroy', $isbn->id) }}" method="post">
 								@csrf
 								@method('DELETE')
 								<button class="btn btn-danger" type="submit">Eliminar</button>

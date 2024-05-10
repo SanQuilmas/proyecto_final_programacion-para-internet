@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Libro extends Model
 {
@@ -17,4 +18,10 @@ class Libro extends Model
     {
         return $this->belongsToMany(Autor::class, 'autor_libros')->withTimestamps();;
     }
+
+    public function isbns(): HasMany
+    {
+        return $this->hasMany(ISBN::class);
+    }
+
 }

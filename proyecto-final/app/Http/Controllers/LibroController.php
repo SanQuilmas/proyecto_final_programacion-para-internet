@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Libro;
 use App\Models\Autor;
 use App\Models\autor_libros;
+use App\Models\ISBN;
 
 use Illuminate\Http\Request;
 
@@ -36,8 +37,6 @@ class LibroController extends Controller
     {
         $request->validate([
             'titulo'=>'required',
-            'ISBN'=>'required',
-            'autor'=>'required',
         ]);
 
         $libro = new Libro;
