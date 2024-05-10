@@ -28,10 +28,6 @@
                 <input type="text" class="form-control" name="ISBN" value={{ $libro->ISBN }} />
             </div>
 
-            <div class="form-group">
-                <label for="autor"><font color="white">Autor:</font></label>
-                <input type="text" class="form-control" name="autor" value={{ $libro->autor }} />
-            </div> 
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>

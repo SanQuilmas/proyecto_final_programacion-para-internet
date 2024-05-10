@@ -27,10 +27,6 @@
               <input type="text" class="form-control" name="ISBN"/>
           </div>
 
-          <div class="form-group">
-              <label for="autor"><font color="white">Autor:</font></label>
-              <input type="text" class="form-control" name="autor"/>
-          </div>                     
           <button type="submit" class="btn btn-primary">Add Libro</button>
       </form>
   </div>

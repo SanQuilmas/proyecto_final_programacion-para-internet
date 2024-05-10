@@ -16,7 +16,6 @@
 					<th scope="col">ID</th>
 					<th scope="col">Título</th>
 					<th scope="col">ISBN</th>
-					<th scope="col">Autor</th>
 					<th scope="col" colspan="2">Acciones</th>
 				</tr>
 			</thead>
@@ -26,7 +25,6 @@
 						<td>{{ $libro->id }}</td>
 						<td>{{ $libro->titulo }}</td>
 						<td>{{ $libro->ISBN }}</td>
-						<td>{{ $libro->autor }}</td>
 						<td>
 							<a href="{{ route('libros.edit', $libro->id) }}" class="btn btn-primary">Editar</a>
 						</td>
