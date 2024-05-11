@@ -16,6 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('titulo');
             $table->integer('isbn_id')->default('0');
+            $table->softDeletes();
         });
     }
 
