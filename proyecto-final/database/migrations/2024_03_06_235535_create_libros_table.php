@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('titulo');
-            $table->integer('isbn_id');
+            $table->integer('isbn_id')->default('0');
         });
     }
 

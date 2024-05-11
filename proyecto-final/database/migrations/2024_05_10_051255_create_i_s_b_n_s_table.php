@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('i_s_b_n_s', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->char('isbn');
+            $table->string('isbn');
             $table->integer('libro_id');
         });
     }

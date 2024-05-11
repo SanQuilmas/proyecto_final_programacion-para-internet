@@ -22,5 +22,4 @@ class Libro extends Model
     {
         return $this->hasMany(ISBN::class);
     }
-
 }
