@@ -13,6 +13,9 @@
 				<a class="btn btn-dark" href="/autors/create">Nuevo Autor</a>
 				<a class="btn btn-dark" href="/isbn">Listar ISBN</a>
 				<a class="btn btn-dark" href="/isbn/create">Nuevo ISBN</a>
+				@if (auth()->user()->is_admin)
+					<a class="btn btn-dark" href="/admin/index">Listar Datos Removidos</a>
+				@endif
 			</div>
 			</nav>
 		<div class="container">

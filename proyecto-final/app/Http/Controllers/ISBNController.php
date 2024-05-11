@@ -95,4 +95,19 @@ class ISBNController extends Controller
 
         return redirect('/isbn')->with('success', 'ISBN deleted!');
     }
+    
+    public function restoreISBN(string $id)
+    {
+        $isbn = ISBN::withTrashed()->find($id);
+        $isbn->restore();
+        $isbn->libro()->associate($isbn->libro_id);
+        $isbn->save();
+    }
+    
+    public function deleteISBNForever($id)
+    {
+        $isbn = ISBN::withTrashed()->find($id);
+
+        $isbn->forceDelete(); 
+    }
 }

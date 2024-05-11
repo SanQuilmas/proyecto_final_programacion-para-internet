@@ -24,3 +24,5 @@ Si se necesitan datos de prueba:
 ```
 php artisan db:seed
 ```
+
+Tambien crea usuarios de prueba pre-aprobados, por si gusta evitar comprobar su correo electronico.

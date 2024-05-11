@@ -24,7 +24,12 @@
 					<tr>
 						<td>{{ $isbn->id }}</td>
 						<td>{{ $isbn->isbn }}</td>
-						<td>{{ $isbn->libro->titulo }}</td> 
+						@if ($isbn->libro == null)
+							<td><p style="color:#ff0000";>NO EXISTE EN LA BASE DE DATOS</p></td> 
+						@endif
+						@if ($isbn->libro != null)
+							<td>{{ $isbn->libro->titulo }}</td> 
+						@endif
 						<td>
 							<a href="{{ route('isbn.edit', $isbn->id) }}" class="btn btn-primary">Editar</a>
 						</td>

@@ -89,7 +89,6 @@ class LibroController extends Controller
             $libro->isbns()->save($request->get('ISBN'));
         }
 
-        $isbns = $request->get('add-isbn');
         $isbns_del = $request->get('remove-isbn');
 
         
@@ -102,20 +101,6 @@ class LibroController extends Controller
                             $libro->isbns()->where('id', '=', $isbn->id)->delete();
                         }
                 }
-        }
-
-        if($isbns != null){
-            foreach($isbns as $isbn)
-                $isbn = ISBN::find($id);
-                if($isbn != null){
-                    foreach($libro->isbns as $libro_isbn)
-                        if (strcmp($isbn->isbn, $libro_isbn->isbn) == 0 ){ 
-                            $flagISBN = False;
-                            }
-                if($flagISBN){
-                    $libro->isbns()->save($isbn);
-                }
-            }
         }
 
         $libro->save();
@@ -159,4 +144,18 @@ class LibroController extends Controller
 
         return redirect('/libros')->with('success', 'Libro deleted!');
     }
+    
+    public function restoreLirbo(string $id)
+    {
+        $libro = Libro::withTrashed()->find($id);
+        $libro->restore();
+    }
+    
+    public function deleteLibroForever($id)
+    {
+        $libro = Libro::withTrashed()->find($id);
+
+        $libro->forceDelete(); 
+    }
+
 }

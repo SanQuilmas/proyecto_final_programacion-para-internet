@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Libro;
+use App\Models\Autor;
+use App\Models\ISBN;
 
 class ProfileController extends Controller
 {
@@ -57,4 +60,56 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    //ADMIN PANEL FUNCTIONS
+    public function index()
+    {
+        $isbns = ISBN::onlyTrashed()->get();
+        $autors = Autor::onlyTrashed()->get();
+        $libros = Libro::onlyTrashed()->get();
+
+        return view('profile.index', compact('libros', 'autors', 'isbns'));
+    }
+
+    public function restore(string $op, string $id)
+    {
+        if ($op == 'isbn') {
+            $isbn = ISBN::withTrashed()->find($id);
+            $isbnController = new ISBNController();
+            $isbnController->restoreISBN($id);
+        }elseif ($op == 'libro') {
+            $isbn = Libro::withTrashed()->find($id);
+            $isbn->restore();
+        }elseif ($op == 'autor') {
+            $autor = Autor::withTrashed()->find($id);
+            $autor->restore();
+        }
+
+        $isbns = ISBN::onlyTrashed()->get();
+        $autors = Autor::onlyTrashed()->get();
+        $libros = Libro::onlyTrashed()->get();
+
+        return view('profile.index', compact('libros', 'autors', 'isbns'));
+    }
+
+    public function forceDelete(string $op, string $id)
+    {
+        if ($op == 'isbn') {
+            $isbn = ISBN::withTrashed()->find($id);
+            $isbn->forceDelete();
+        }elseif ($op == 'libro') {
+            $isbn = Libro::withTrashed()->find($id);
+            $isbn->forceDelete();
+        }elseif ($op == 'autor') {
+            $autor = Autor::withTrashed()->find($id);
+            $autor->forceDelete();
+        }
+
+        $isbns = ISBN::onlyTrashed()->get();
+        $autors = Autor::onlyTrashed()->get();
+        $libros = Libro::onlyTrashed()->get();
+
+        return view('profile.index', compact('libros', 'autors', 'isbns'));
+    }
+
 }

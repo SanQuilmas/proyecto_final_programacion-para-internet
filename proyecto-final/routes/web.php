@@ -41,4 +41,9 @@ Route::resource('libros', LibroController::class);
 Route::resource('autors', AutorController::class);
 Route::resource('isbn', ISBNController::class);
 
+
+Route::get('/admin/index', [ProfileController::class, 'index'])->name('profile.index');
+Route::get('/admin/index/restore/{op}/{id}', [ProfileController::class, 'restore'])->name('profile.restore');
+Route::get('/admin/index/delete/{op}/{id}', [ProfileController::class, 'forceDelete'])->name('profile.forceDelete');
+
 require __DIR__.'/auth.php';

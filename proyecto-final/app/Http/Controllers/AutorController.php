@@ -112,4 +112,17 @@ class AutorController extends Controller
 
         return redirect('/autors')->with('success', 'Autor deleted!');
     }
+    
+    public function restoreAutor(string $id)
+    {
+        $autor = Autor::withTrashed()->find($id);
+        $autor->restore();
+    }
+    
+    public function deleteAutorForever($id)
+    {
+        $autor = Autor::withTrashed()->find($id);
+
+        $autor->forceDelete(); 
+    }
 }
