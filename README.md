@@ -19,3 +19,8 @@ php artisan serve
 
 La pagina entonces estara en el link otorgado por php artisan.
 Se necesitara crear una cuenta para poder ingresar.
+
+Si se necesitan datos de prueba:
+```
+php artisan db:seed
+```
