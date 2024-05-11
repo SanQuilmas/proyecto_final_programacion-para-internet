@@ -42,8 +42,13 @@ Route::resource('autors', AutorController::class);
 Route::resource('isbn', ISBNController::class);
 
 
-Route::get('/admin/index', [ProfileController::class, 'index'])->name('profile.index');
-Route::get('/admin/index/restore/{op}/{id}', [ProfileController::class, 'restore'])->name('profile.restore');
-Route::get('/admin/index/delete/{op}/{id}', [ProfileController::class, 'forceDelete'])->name('profile.forceDelete');
+Route::get('/admin/index', [ProfileController::class, 'index'])
+    ->name('profile.index');
+Route::get('/admin/index/restore/{op}/{id}', [ProfileController::class, 'restore'])
+    ->name('profile.restore');
+Route::get('/admin/index/delete/{op}/{id}', [ProfileController::class, 'forceDelete'])
+    ->name('profile.forceDelete');
+Route::get('/admin/index/changeStatus/{id}', [ProfileController::class, 'cambiarStatusAdmin'])
+    ->name('profile.cambiarStatusAdmin');
 
 require __DIR__.'/auth.php';

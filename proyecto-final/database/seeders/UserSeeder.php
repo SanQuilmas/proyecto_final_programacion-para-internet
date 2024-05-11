@@ -16,5 +16,9 @@ class UserSeeder extends Seeder
         User::factory()
             ->count(3)
             ->create();
+        User::factory()
+            ->create([
+            'is_admin' => '1',
+            ]);
     }
 }

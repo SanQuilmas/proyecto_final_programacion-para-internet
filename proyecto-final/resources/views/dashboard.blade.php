@@ -14,7 +14,7 @@
 				<a class="btn btn-dark" href="/isbn">Listar ISBN</a>
 				<a class="btn btn-dark" href="/isbn/create">Nuevo ISBN</a>
 				@if (auth()->user()->is_admin)
-					<a class="btn btn-dark" href="/admin/index">Listar Datos Removidos</a>
+					<a class="btn btn-dark" href="/admin/index">Panel Admin</a>
 				@endif
 			</div>
 			</nav>
