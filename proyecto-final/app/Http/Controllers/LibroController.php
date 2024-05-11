@@ -19,7 +19,7 @@ class LibroController extends Controller
         $autors = Autor::with('libros')->get();
         $libros = Libro::all();
 
-        return view('libros.index', compact('libros'), compact('autors'), compact('isbns'));
+        return view('libros.index', compact('libros', 'autors', 'isbns'));
     }
 
     /**
@@ -27,9 +27,8 @@ class LibroController extends Controller
      */
     public function create()
     {
-        $isbns = ISBN::all();
         $autors = Autor::all();
-        return view('libros.create', compact('autors'), compact('isbns'));
+        return view('libros.create', compact('autors'));
     }
 
     /**
@@ -155,6 +154,7 @@ class LibroController extends Controller
     {
         $libro = Libro::find($id);
         $libro->autors()->detach();
+        $libro->isbns()->delete();
         $libro->delete();
 
         return redirect('/libros')->with('success', 'Libro deleted!');

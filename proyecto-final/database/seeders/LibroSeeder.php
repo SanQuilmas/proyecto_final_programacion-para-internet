@@ -17,7 +17,7 @@ class LibroSeeder extends Seeder
 	{
 		Libro::factory()
 			->count(3)
-			->has(Autor::factory()->count(3)->has(Libro::factory()->count(1)->has(ISBN::factory()->count(3))))
+			->has(Autor::factory()->count(3)->has(Libro::factory()->count(1)->has(ISBN::factory()->count(2))))
 			->has(ISBN::factory()->count(3))
 			->create();
 	}
