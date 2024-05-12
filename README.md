@@ -26,3 +26,9 @@ php artisan db:seed
 ```
 
 Tambien crea usuarios de prueba pre-aprobados, por si gusta evitar comprobar su correo electronico.
+
+'''
+php artisan storage:link
+'''
+
+Ese comando es para vincular el sistema de archivos

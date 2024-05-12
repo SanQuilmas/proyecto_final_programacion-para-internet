@@ -92,7 +92,7 @@
 							<td>Si es admin</td> 
 						@endif
 						<td>
-							<a href="{{ route('profile.cambiarStatusAdmin', ['id' => $user->id]) }}" class="btn btn-primary">Hacer Admin</a>
+							<a href="{{ route('profile.cambiarStatusAdmin', ['id' => $user->id]) }}" class="btn btn-primary">Cambiar Status Admin</a>
 						</td>
 						<td>
 							<a href="{{ route('profile.forceDelete', ['op' => 'user', 'id' => $user->id]) }}" class="btn btn-danger">Eliminar</a>
