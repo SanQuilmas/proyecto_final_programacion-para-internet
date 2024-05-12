@@ -51,4 +51,7 @@ Route::get('/admin/index/delete/{op}/{id}', [ProfileController::class, 'forceDel
 Route::get('/admin/index/changeStatus/{id}', [ProfileController::class, 'cambiarStatusAdmin'])
     ->name('profile.cambiarStatusAdmin');
 
+Route::get('/descargar/{archivo}', [LibroController::class, 'descargarArchivo'])
+    ->name('descargar');
+
 require __DIR__.'/auth.php';

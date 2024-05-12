@@ -5,6 +5,8 @@ use App\Models\Libro;
 use App\Models\Autor;
 use App\Models\autor_libros;
 use App\Models\ISBN;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 use Illuminate\Http\Request;
 
@@ -18,6 +20,11 @@ class LibroController extends Controller
         $isbns = ISBN::with('libro')->get();
         $autors = Autor::with('libros')->get();
         $libros = Libro::all();
+
+        foreach ($libros as $libro) {
+            $folderName = Str::slug($libro->titulo, '_') . '_' . $libro->id;
+            $libro->archivos = Storage::disk('public')->files('pdfs/' . $folderName);
+        }
 
         return view('libros.index', compact('libros', 'autors', 'isbns'));
     }
@@ -38,7 +45,10 @@ class LibroController extends Controller
     {
         $request->validate([
             'titulo'=>'required',
+            'pdf.*' => 'file|max:10240',
         ]);
+
+        
 
         $libro = new Libro;
         $libro->titulo = $request->get('titulo');
@@ -50,6 +60,15 @@ class LibroController extends Controller
         
         $libro->save();
 
+        $files = $request->file('pdf');
+        if($request->hasFile('pdf')){
+            foreach($files as $file) {
+                $filename = $file->getClientOriginalName();
+                $folderName = 'pdfs/' . Str::slug($libro->titulo, '_') . '_' . $libro->id;
+                $file->storeAs('public/' . $folderName, $filename);
+            }
+        }
+        
         $autors = $request->get('autor');
 
         if($autors != null){
@@ -70,6 +89,10 @@ class LibroController extends Controller
         $isbns = ISBN::all();
         $autors = Autor::all();
         $libro = Libro::find($id);
+
+        $folderName = Str::slug($libro->titulo, '_') . '_' . $libro->id;
+        $libro->archivos = Storage::disk('public')->files('pdfs/' . $folderName);
+
         return view('libros.edit', compact('libro', 'autors', 'isbns'));
     }
 
@@ -79,6 +102,7 @@ class LibroController extends Controller
         $flagISBN = True;
         $request->validate([
             'titulo'=>'required',
+            'pdf.*' => 'file|max:10240',
         ]);
 
         $libro = Libro::find($id);
@@ -128,6 +152,22 @@ class LibroController extends Controller
                 }
         }
 
+        $archivos_del = $request->get('remove-pdf');
+        if ($archivos_del != null) {
+            foreach ($archivos_del as $archivo) {
+                Storage::disk('public')->delete($archivo);
+            }
+        }
+
+        $files = $request->file('add-pdf');
+        
+        if($request->hasFile('add-pdf')){
+            foreach($files as $file) {
+                $filename = $file->getClientOriginalName();
+                $folderName = 'pdfs/' . Str::slug($libro->titulo, '_') . '_' . $libro->id;
+                $file->storeAs('public/' . $folderName, $filename);
+            }
+        }
 
         return redirect('/libros')->with('success', 'Libro updated!');
     }
@@ -140,6 +180,10 @@ class LibroController extends Controller
         $libro = Libro::find($id);
         $libro->autors()->detach();
         $libro->isbns()->delete();
+
+        $folderName = Str::slug($libro->titulo, '_') . '_' . $libro->id; 
+        Storage::disk('public')->deleteDirectory('pdfs/' . $folderName);
+
         $libro->delete();
 
         return redirect('/libros')->with('success', 'Libro deleted!');

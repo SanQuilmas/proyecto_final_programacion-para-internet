@@ -16,7 +16,8 @@
 					<th scope="col">ID</th>
 					<th scope="col">Título</th>
 					<th scope="col">ISBN</th>
-					<th scope="col">Autor</th>
+					<th scope="col">Autores</th>
+					<th scope="col">Archivos Adjuntos</th>
 					<th scope="col" colspan="2">Acciones</th>
 				</tr>
 			</thead>
@@ -36,6 +37,12 @@
 						<td>
 						@foreach($libro->autors as $autor)
 							{{ $autor->nombre }}
+							<br>
+						@endforeach
+						</td>
+						<td>
+						@foreach($libro->archivos as $archivo)
+							<a href="{{ asset('storage/' . $archivo) }}">{{ basename($archivo) }}</a>
 							<br>
 						@endforeach
 						</td>
