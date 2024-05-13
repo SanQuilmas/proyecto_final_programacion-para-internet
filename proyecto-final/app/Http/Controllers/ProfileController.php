@@ -80,8 +80,8 @@ class ProfileController extends Controller
 			$isbnController = new ISBNController();
 			$isbnController->restoreISBN($id);
 		}elseif ($op == 'libro') {
-			$isbn = Libro::withTrashed()->find($id);
-			$isbn->restore();
+			$libro = Libro::withTrashed()->find($id);
+			$libro->restore();
 		}elseif ($op == 'autor') {
 			$autor = Autor::withTrashed()->find($id);
 			$autor->restore();
@@ -101,8 +101,9 @@ class ProfileController extends Controller
 			$isbn = ISBN::withTrashed()->find($id);
 			$isbn->forceDelete();
 		}elseif ($op == 'libro') {
-			$isbn = Libro::withTrashed()->find($id);
-			$isbn->forceDelete();
+			$libro = Libro::withTrashed()->find($id);
+			$libroController = new LibroController();
+			$libroController->deleteLibroForever($id);
 		}elseif ($op == 'autor') {
 			$autor = Autor::withTrashed()->find($id);
 			$autor->forceDelete();

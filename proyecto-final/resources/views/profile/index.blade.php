@@ -28,7 +28,7 @@
 							<a href="{{ route('profile.restore', ['op' => 'libro', 'id' => $libro->id]) }}" class="btn btn-primary">Restaurar</a>
 						</td>
 						<td>
-							<a href="{{ route('profile.forceDelete', ['op' => 'libro', 'id' => $libro->id]) }}" class="btn btn-danger">Eliminar</a>
+							<a href="{{ route('profile.forceDelete', ['op' => 'libro', 'id' => $libro->id]) }}" class="btn btn-danger">Eliminar Permanentemente</a>
 						</td>
 					</tr>
 				@endforeach
@@ -41,7 +41,7 @@
 							<a href="{{ route('profile.restore', ['op' => 'autor', 'id' => $autor->id]) }}" class="btn btn-primary">Restaurar</a>
 						</td>
 						<td>
-							<a href="{{ route('profile.forceDelete', ['op' => 'autor', 'id' => $autor->id]) }}" class="btn btn-danger">Eliminar</a>
+							<a href="{{ route('profile.forceDelete', ['op' => 'autor', 'id' => $autor->id]) }}" class="btn btn-danger">Eliminar Permanentemente</a>
 						</td>
 					</tr>
 				@endforeach
@@ -54,7 +54,7 @@
 							<a href="{{ route('profile.restore', ['op' => 'isbn', 'id' => $isbn->id]) }}" class="btn btn-primary">Restaurar</a>
 						</td>
 						<td>
-							<a href="{{ route('profile.forceDelete', ['op' => 'isbn', 'id' => $isbn->id]) }}" class="btn btn-danger">Eliminar</a>
+							<a href="{{ route('profile.forceDelete', ['op' => 'isbn', 'id' => $isbn->id]) }}" class="btn btn-danger">Eliminar Permanentemente</a>
 						</td>
 					</tr>
 				@endforeach
@@ -95,7 +95,7 @@
 							<a href="{{ route('profile.cambiarStatusAdmin', ['id' => $user->id]) }}" class="btn btn-primary">Cambiar Status Admin</a>
 						</td>
 						<td>
-							<a href="{{ route('profile.forceDelete', ['op' => 'user', 'id' => $user->id]) }}" class="btn btn-danger">Eliminar</a>
+							<a href="{{ route('profile.forceDelete', ['op' => 'user', 'id' => $user->id]) }}" class="btn btn-danger">Eliminar Permanentemente</a>
 						</td>
 					</tr>
 				@endforeach

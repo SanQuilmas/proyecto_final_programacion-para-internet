@@ -181,15 +181,12 @@ class LibroController extends Controller
         $libro->autors()->detach();
         $libro->isbns()->delete();
 
-        $folderName = Str::slug($libro->titulo, '_') . '_' . $libro->id; 
-        Storage::disk('public')->deleteDirectory('pdfs/' . $folderName);
-
         $libro->delete();
 
         return redirect('/libros')->with('success', 'Libro deleted!');
     }
     
-    public function restoreLirbo(string $id)
+    public function restoreLibro(string $id)
     {
         $libro = Libro::withTrashed()->find($id);
         $libro->restore();
@@ -198,6 +195,9 @@ class LibroController extends Controller
     public function deleteLibroForever($id)
     {
         $libro = Libro::withTrashed()->find($id);
+
+        $folderName = Str::slug($libro->titulo, '_') . '_' . $libro->id; 
+        Storage::disk('public')->deleteDirectory('pdfs/' . $folderName);
 
         $libro->forceDelete(); 
     }
