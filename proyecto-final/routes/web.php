@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\AutorController;
 use App\Http\Controllers\ISBNController;
+use App\Mail\CatalogoEmail;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
     return view('welcome');
@@ -54,5 +56,16 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Route::get('/descargar/{archivo}', [LibroController::class, 'descargarArchivo'])
     ->name('descargar');
+
+#Route::get('/bugreport', function() {
+#    $name = "Funny Coder";
+#    Mail::to('leonelgonzalezvalencia12@gmail.com')->send(new CatalogoEmail($name));
+#})->name('bugreport');
+
+Route::get('/bugreport', [ProfileController::class, 'bugreport'])
+    ->name('bugreport');
+    
+Route::post('/sendBugreport', [ProfileController::class, 'sendBugreport'])
+    ->name('profile.sendBugreport');
 
 require __DIR__.'/auth.php';

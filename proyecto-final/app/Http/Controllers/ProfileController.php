@@ -8,10 +8,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Libro;
 use App\Models\Autor;
 use App\Models\ISBN;
 use App\Models\User;
+use App\Mail\CatalogoEmail;
 
 class ProfileController extends Controller
 {
@@ -133,6 +135,20 @@ class ProfileController extends Controller
 		$users = User::all();
 
 		return view('profile.index', compact('libros', 'autors', 'isbns', 'users'));
+	}
+
+	public function bugreport(Request $request)
+	{
+		$user = $request->user();
+		return view('profile.bugreport', compact('user'));
+	}
+
+	public function sendBugreport(Request $request)
+	{
+		$name = $request->user()->name;
+		$content = $request->get('content');
+		Mail::to('leonelgonzalezvalencia12@gmail.com')->send(new CatalogoEmail($name, $content));
+		return Redirect('/bugreport');
 	}
 
 }
