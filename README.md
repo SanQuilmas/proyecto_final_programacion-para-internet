@@ -33,6 +33,6 @@ php artisan storage:link
 
 Ese comando es para vincular el sistema de archivos. 
 
-+Este sistema manda un correo de validacion. En el .env esta acomodado para enviarlo a una cuenta mailtrap, sugiero que esto se modifique a como este puesta la red de el usuario final.
-+El seeder genera usuarios pre-hechos, incluyendo un usuario admin, las contraseñas predeterminadas para los usuarios pre-hechos es 'password', sugiero usar una de estas, sacando su correo de la tabla 'users' de la base de datos.
-+La cuenta admin puede dar o revocar admin, tambien puede restaurar datos borrados o eliminarlos permanentemente(por medio de soft delete)
++ Este sistema manda un correo de validacion. En el .env esta acomodado para enviarlo a una cuenta mailtrap, sugiero que esto se modifique a como este puesta la red de el usuario final.
++ El seeder genera usuarios pre-hechos, incluyendo un usuario admin, las contraseñas predeterminadas para los usuarios pre-hechos es 'password', sugiero usar una de estas, sacando su correo de la tabla 'users' de la base de datos.
++ La cuenta admin puede dar o revocar admin, tambien puede restaurar datos borrados o eliminarlos permanentemente(por medio de soft delete)
