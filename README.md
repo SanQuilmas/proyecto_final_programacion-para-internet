@@ -31,4 +31,6 @@ Tambien crea usuarios de prueba pre-aprobados, por si gusta evitar comprobar su 
 php artisan storage:link
 ```
 
-Ese comando es para vincular el sistema de archivos
+Ese comando es para vincular el sistema de archivos. 
+
+Este sistema manda un correo de validacion. En el .env esta acomodado para enviarlo por mailtrap, sugiero que esto se modifique a como este puesta la red de el usuario final.
