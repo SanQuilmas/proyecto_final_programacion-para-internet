@@ -18,15 +18,14 @@
         <form method="post" action="{{ route('isbn.store') }}">
             @csrf
             <label for="isbn"><font color="white">ISBN:</font></label>
-                  <input type="text" class="form-control" name="isbn"/>
+                  <input type="text" class="form-control" name="isbn" required/>
               </div>
 
              
               <div class="form-group">
-                  <label for="libro"><font color="white">Agregar Libro:</font></label>
-              
-                <select class="custom-select mr-sm-2" name="libro">
-                  <option selected>Choose...</option>
+                <label for="libro"><font color="white">Agregar Libro:</font></label>
+                <select class="custom-select mr-sm-2" name="libro" required>
+                  <option selected disabled value="">Choose...</option>
                   @foreach($libros as $libro)
                       <option value="{{ $libro->id }}">
                           {{ $libro->titulo }}

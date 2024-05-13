@@ -20,7 +20,7 @@
 
 			<div class="form-group">
 				<label for="titulo"><font color="white">Titulo:</font></label>
-				<input type="text" class="form-control" name="titulo" value={{ $libro->titulo }} />
+				<input type="text" class="form-control" name="titulo" value={{ $libro->titulo }} required/>
 			</div>
 
 			<div class="form-group">

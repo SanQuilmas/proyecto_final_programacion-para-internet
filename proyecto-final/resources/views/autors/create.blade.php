@@ -19,7 +19,7 @@
           @csrf
           <div class="form-group">    
             <label for="nombre"><font color="white">Nombre:</font></label>
-            <input type="text" class="form-control" name="nombre"/>
+            <input type="text" class="form-control" name="nombre" required/>
           </div>
           <button type="submit" class="btn btn-primary">Add Autor</button>
         </form>
