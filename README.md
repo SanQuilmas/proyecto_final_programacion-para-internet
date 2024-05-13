@@ -17,21 +17,21 @@ npm run dev
 php artisan serve
 ```
 
-La pagina entonces estara en el link otorgado por php artisan.
-Se necesitara crear una cuenta para poder ingresar.
 
-Si se necesitan datos de prueba:
+La pagina entonces estara en el link otorgado por php artisan.
+Se necesitara crear una cuenta para poder ingresar. Aparte de hacer datos de prueba, el seeder que escribi tambien crea usuarios de prueba pre-aprobados, por si gusta evitar comprobar su correo electronico.
+
 ```
 php artisan db:seed
 ```
 
-Tambien crea usuarios de prueba pre-aprobados, por si gusta evitar comprobar su correo electronico.
+Para utilizar las funciones de manejo de archivos se necesitara de este comando para vincular el sistema de archivos:
 
 ```
 php artisan storage:link
 ```
 
-Ese comando es para vincular el sistema de archivos. 
+Puntos para mantener en cuenta:
 
 + Este sistema manda un correo de validacion. En el .env esta acomodado para enviarlo a una cuenta mailtrap, sugiero que esto se modifique a como este puesta la red de el usuario final.
 + El seeder genera usuarios pre-hechos, incluyendo un usuario admin, las contraseñas predeterminadas para los usuarios pre-hechos es 'password', sugiero usar una de estas, sacando su correo de la tabla 'users' de la base de datos.

@@ -131,7 +131,9 @@ class ProfileTest extends TestCase
     }
     public function testUserCanAccessRouteAndSeeTextAdminTable()
     {
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'is_admin' => '1',
+        ]);
 
         $response = $this->actingAs($user)->get('/admin/index');
         
