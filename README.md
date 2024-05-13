@@ -36,4 +36,4 @@ Puntos para mantener en cuenta:
 + El seeder genera usuarios pre-hechos, incluyendo un usuario admin, las contraseñas predeterminadas para los usuarios pre-hechos es 'password', sugiero usar una de estas, sacando su correo de la tabla 'users' de la base de datos.
 + En el .env esta acomodado para enviarlo a una cuenta mailtrap, esto me envia correos personalizados en la forma de 'bugreports' a mi.
 + La cuenta admin puede dar o revocar admin, tambien puede restaurar datos borrados o eliminarlos permanentemente(por medio de soft delete)
-+ Hay una funcion de 'bugreport' que permite al usuario escribir y mandar un correo al desarollador(ese soy yo).
++ Hay una funcion de 'bugreport' que permite al usuario escribir y mandar un correo al desarollador(ese soy yo). 
